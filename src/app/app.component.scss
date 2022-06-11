@@ -1,0 +1,162 @@
+@keyframes flipCard {
+    0% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes makeVisible {
+    0% {
+        opacity: 0;
+    }
+    30% {
+        opacity: 0;
+    }
+    100% {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2em;
+    .gamerDetails {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.4rem;
+        .bxs-heart {
+            font-size: 1.8rem;
+            color: red;
+        }
+    }
+}
+
+.gameBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 50vh;
+}
+
+.wholeWord {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2em;
+    &__container {
+        position: relative;
+        padding: 5px;
+        margin: 2px;
+        width: 80px;
+        height: 80px;
+        perspective: 1000px;
+        background-color: #f3f3f3;
+        font-size: 2rem;
+        border-radius: 8px;
+        transition: trasform .3s;
+    }
+    &__letter {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateY(180deg);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .3s;
+    }
+    &__container.visible {
+        animation: flipCard .4s linear forwards;
+        .wholeWord__letter {
+            animation: makeVisible 1s linear forwards;
+        }
+    }
+    &__container.lost {
+        background-color: pink;
+        color: red;
+    }
+    &__container.win {
+        background: rgb(208, 241, 158);
+        color: green;
+
+    }
+}
+
+.breakWord {
+    flex-basis: 100%;
+    height: 0;
+    background: none;
+}
+
+.letters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    .good, .bad {
+        padding: 10px;
+    }
+    .good {
+        background-color: green;
+    }
+    .bad {
+        background-color: red;
+    }
+}
+
+.words {
+    &:first-child {
+        color:red;
+    }
+}
+
+.gameControls {
+    display: flex;
+}
+
+.checkGuessBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 1em;
+    background-color: #000;
+    border: 1px solid #000;
+    color: #fff;
+    cursor: pointer;
+    transition: color .3s, background-color .3s;
+    &:hover {
+        color: #000;
+        background-color: #fff;
+    }
+}
+// overlays
+.popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.191);
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding: 2em;
+        border-radius: 15px;
+        box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.109);
+    }
+}
